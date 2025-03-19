@@ -246,18 +246,18 @@
         });
         // Function to join game automatically
         function JoinGame(hostId) {
-            conn = peer.connect(hostId);
-            conn.on('open', function () {
-                console.log('Connected to host: ' + hostId);
-                //connectionStatus.innerText = 'Connected! Starting game...';
-                conn.on('data', receiveData);
-                introMenu.classList.add('hidden');
-                if(!is_connected){
+            if(!is_connected){
+                conn = peer.connect(hostId);
+                conn.on('open', function () {
+                    
+                    console.log('Connected to host: ' + hostId);
+                    //connectionStatus.innerText = 'Connected! Starting game...';
+                    conn.on('data', receiveData);
+                    introMenu.classList.add('hidden');
                     startGame();
-                }
-                
-                
-            });
+
+                });
+            }
         }
         // Join game
         connectButton.addEventListener('click', () => {
