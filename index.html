@@ -134,7 +134,7 @@
         let scaleX = canvas.width / 800;
         let scaleY = canvas.height / 400;
         let baseSpeed = 0.01;
-        let maxSpeed = 0.008 * canvas.width;
+        let maxSpeed = 0.01 * canvas.width;
         let lastScorer = null;
         let ball = { 
             x: canvas.width / 2, 
@@ -185,13 +185,17 @@
             const gameWidth = window.innerWidth;
             const gameHeight = window.innerHeight;
             
-            
-            //connectionStatus.innerText = 'Connected! Starting game...';
-            conn.on('data', receiveData);
-            setTimeout(() => {
-                introMenu.classList.add('hidden');
-                startGame();
-            }, 100);
+            if(!is_connected){
+                 //connectionStatus.innerText = 'Connected! Starting game...';
+                conn.on('data', receiveData);
+                setTimeout(() => {
+                    introMenu.classList.add('hidden');
+                    startGame();
+                }, 100);
+            }else{
+                console.log('Host game already running');
+            }
+           
         });
 
 
